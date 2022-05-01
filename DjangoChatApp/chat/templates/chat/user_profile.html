@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="home-container">
+    <div id="topics-sidebar">
+        {% include 'chat/topics_component.html' %}
+    </div>
+
+    <div id="feed-area">
+        <div id="user-profile">
+
+            <div id="up-info">
+
+                <div class="avatar avatar-vlg">
+                    <img src="https://unsplash.it/3840/2160">
+                </div>
+
+                <h3>User Full Name</h3>
+                <p>@{{user}}</p>
+                <a href="">
+                    <div id="edit-btn">
+                        Edit Profile
+                    </div>
+                </a>
+            </div>
+            <div id="up-about">
+                <h3>About</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur dolores corrupti culpa veniam
+                    fugiat, repudiandae quia placeat quaerat quis alias adipisci, aliquam architecto debitis natus
+                    voluptatem quidem ea eius facilis?</p>
+            </div>
+        </div>
+        <div class="feed-item roomlist">
+            <h3>Room Hosted by @{{user}}</h3>
+            {% include 'chat/room-list_component.html' %}
+        </div>
+    </div>
+
+    <div id="activity-sidebar" class="window">
+        {% include 'chat/activity_component.html' %}
+    </div>
+</div>
+
+
+
+{% endblock content %}

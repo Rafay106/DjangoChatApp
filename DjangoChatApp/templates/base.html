@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Chat App</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'assets/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block importCSS %}{% endblock importCSS %}
+</head>
+
+<body>
+    <nav id="nav-bar">
+        <div class="container">
+            {% include "navbar.html" %}
+        </div>
+    </nav>
+    <div class="messages">
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <main>
+        <div class="container">
+            {% block content %}
+
+            {% endblock content %}
+        </div>
+    </main>
+    {% load static%}
+    <script src="{% static 'script/base.js' %}"></script>
+</body>
+
+</html>

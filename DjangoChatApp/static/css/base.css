@@ -1,0 +1,895 @@
+:root {
+    --color-dark: #242930;
+    --color-medium: #383E49;
+    --color-light: #535B69;
+    --color-light-more: #ADB7FF;
+
+    --color-text-light: #e5e5e5;
+    --color-text-dark: #adb5bd;
+
+    --color-success: #5dd693;
+    --color-error: #fc4b0b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-dark);
+    color: var(--color-text-dark);
+    font-family: 'Roboto';
+    line-height: 1.6;
+
+}
+
+.container {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-text-dark);
+}
+
+#home-container {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    align-items: start;
+    gap: 6rem;
+}
+
+/* svg styling */
+
+svg {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.svg-lm {
+    fill: var(--color-light-more);
+}
+
+.svg-tl {
+    fill: var(--color-text-light);
+}
+
+.svg-td {
+    fill: var(--color-text-dark);
+}
+
+.svg-l {
+    fill: var(--color-light);
+}
+
+/* Button styling */
+
+.btn {
+    background-color: var(--color-light-more);
+    color: var(--color-dark);
+    border: none;
+    border-radius: 0.5rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* Title-bar styling */
+
+.title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-light);
+    color: var(--color-text-light);
+    border-radius: 0.5rem 0.5rem 0 0;
+    padding: 0.5rem 1rem;
+}
+
+.title-bar .start-options,
+.title-bar .end-options {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.title-bar svg {
+    margin-top: 0.3rem;
+}
+
+.title-bar .options {
+    display: flex;
+    justify-content: end;
+    justify-self: end;
+}
+
+/* Window styling */
+
+.window {
+    background-color: var(--color-medium);
+    border-radius: 0.5rem;
+}
+
+.scroll {
+    max-height: 82.5vh;
+    overflow-y: auto;
+}
+
+/* Avatar Styling */
+
+.avatar {
+    border-radius: 50%;
+    border: 2px solid var(--color-light-more);
+}
+
+.avatar-medium img {
+    width: 2.6rem;
+    height: 2.6rem;
+}
+
+.avatar-small img {
+    width: 2rem;
+    height: 2rem;
+}
+
+.avatar img {
+    display: block;
+    border-radius: 50%;
+}
+
+.avatar-vlg img {
+    width: 12rem;
+    height: 12rem;
+}
+
+/* Profile div */
+
+.profile-sm a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-light-more);
+}
+
+.profile-lg a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile-lg small {
+    display: block;
+    color: var(--color-light-more);
+}
+
+/* Navbar styling */
+
+#nav-bar {
+    background-color: var(--color-medium);
+    color: var(--color-text-light);
+    margin-bottom: 2rem;
+}
+
+.nav-container {
+    padding: 0.7rem 0;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    justify-content: center;
+    align-items: center;
+}
+
+#logout-options {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+#logout-options img {
+    width: 2rem;
+}
+
+/* Navbar styling - logo */
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.logo a {
+    display: flex;
+    gap: 0.5rem;
+    color: var(--color-text-light);
+}
+
+.logo img {
+    height: 2rem;
+}
+
+/* Navbar styling - Search Bar */
+
+.search-bar form {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 30rem;
+    background-color: var(--color-light);
+    color: var(--color-text-light);
+    border-radius: 0.5rem;
+    padding: 0 1rem;
+}
+
+.search-bar form label {
+    align-self: flex-end;
+}
+
+.search-bar input {
+    width: 30rem;
+    background-color: var(--color-light);
+    color: var(--color-text-light);
+    border: none;
+    border-radius: 0.5rem;
+    outline: none;
+    padding: 0.5rem;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+}
+
+/* Navbar styling - Profile */
+
+.nav-menu {
+    position: relative;
+    justify-self: end;
+}
+
+.header-user {
+    display: flex;
+    gap: 1rem;
+}
+
+.header-user p {
+    line-height: 1.2;
+}
+
+/* Navbar styling - Dropdown button */
+
+.dropdown-button {
+    background: transparent;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+
+.dropdown-button svg:hover {
+    fill: var(--color-light-more);
+}
+
+/* Navbar styling - Dropdown menu */
+
+.dropdown-menu {
+    position: absolute;
+    z-index: 111;
+    top: 3rem;
+    right: -2rem;
+    background: var(--color-light);
+    border-radius: 0.5rem;
+    box-shadow: 0.5rem 0.5rem 1rem 0.5rem rgba(0, 0, 0, 0.200);
+    overflow: hidden;
+    display: none;
+}
+
+.dropdown-menu.show {
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-menu>a:not(:last-child) {
+    border-bottom: 1px solid var(--color-dark);
+}
+
+.dropdown-menu a {
+    padding: 0.5rem 1rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    color: var(--color-text-dark);
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu a:hover svg {
+    color: var(--color-light-more);
+    fill: var(--color-light-more);
+}
+
+/* topics sidebar styling */
+
+.t-list {
+    width: 13rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+#topics-sidebar p {
+    font-size: large;
+    color: var(--color-light);
+}
+
+.t-list a {
+    display: flex;
+    justify-content: space-between;
+}
+
+.t-item a:hover {
+    color: var(--color-light-more);
+}
+
+.t-list span {
+    background-color: var(--color-medium);
+    border-radius: 3px;
+    padding: 0.15rem 0.5rem;
+    font-weight: bolder;
+}
+
+
+.btn-link {
+    display: flex;
+    align-items: center;
+    justify-content: start !important ;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: var(--color-light-more);
+    font-size: 1rem;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+/* feed head styling */
+#feed-area {
+    padding: 10px;
+}
+
+.feed-head {
+    display: flex;
+    justify-content: space-between;
+}
+
+#fh-title {
+    color: var(--color-text-light);
+    font-weight: 500;
+}
+
+.feed-head div p {
+    color: var(--color-light);
+}
+
+.createbtn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--color-light-more);
+    color: var(--color-dark);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+}
+
+.createbtn svg {
+    fill: var(--color-dark);
+    /* width: 1.3rem;
+    height: 1.3rem; */
+}
+
+.createbtn:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.roomlist {
+    display: grid;
+    grid-template-rows: 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* room card styling */
+
+.room-card {
+    padding: 1.5rem 1.5rem 0 1.5rem;
+    background-color: var(--color-medium);
+    border-radius: 0.5rem;
+}
+
+.room-card-head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.room-card-head .o:hover {
+    color: var(--color-error);
+}
+
+.host-details {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.room-card-body {
+    margin: 5px 0;
+}
+
+#room-title {
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+#room-title a {
+    color: var(--color-text-light);
+}
+
+#room-title a:hover {
+    color: var(--color-light-more);
+    transition: all 0.3s ease-in-out;
+}
+
+#room-desc {
+    margin-top: 0.5rem;
+}
+
+.room-card-foot {
+    border-top: 1px solid var(--color-dark);
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+}
+
+.room-card-foot a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.room-card-foot p {
+    background-color: var(--color-light);
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+}
+
+/* activity side bar styling */
+
+.activity-side-bar {
+    min-width: 15vw;
+}
+
+.ab-scroll {
+    display: grid;
+    grid-template-rows: 1fr;
+    row-gap: 0.9rem;
+    padding: 0.8rem;
+}
+
+.msg-box {
+    border: 1px solid var(--color-light);
+    border-radius: 0.2rem;
+    padding: 0.5rem;
+}
+
+.mb-head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mb-head p {
+    line-height: 1.3;
+}
+
+.mb-head small {
+    display: block;
+    color: var(--color-text-dark);
+    font-size: 11px;
+}
+
+.msg-box-subject {
+    /* margin-left: 20%; */
+}
+
+.msg-box-subject small a {
+    display: inline-block;
+    color: var(--color-light-more);
+    font-size: 1rem;
+}
+
+.msg-box-subject small a:hover {
+    text-decoration: underline;
+}
+
+.msg-box-body {
+    background-color: var(--color-dark);
+    border-radius: 0.2rem;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    font-size: 0.8rem;
+}
+
+/* Create room form styling */
+
+#roomcreateview {
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-room-form {
+    width: 30vw;
+    margin: 1rem auto;
+}
+
+.crf-body {
+    padding: 0.5rem 1rem;
+}
+
+.crf-input {
+    margin: 1rem 0;
+}
+
+.crf-input input {
+    background: transparent;
+    color: var(--color-light-more);
+    border: 1px solid var(--color-light);
+    border-radius: 0.5rem;
+    outline: none;
+    padding: 0.5rem;
+    width: 100%;
+    font-size: 1.05rem;
+}
+
+.crf-input textarea {
+    background: transparent;
+    color: var(--color-light-more);
+    border: 1px solid var(--color-light);
+    border-radius: 0.5rem;
+    outline: none;
+    padding: 0.5rem;
+    width: 100%;
+    height: 7rem;
+    resize: none;
+    font-size: large;
+    font-family: 'Roboto';
+}
+
+#crf-btn {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Room view styling */
+
+.roomview-container {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    align-items: start;
+    gap: 1.5rem;
+    overflow: hidden;
+}
+
+.room-container {
+    max-height: 87.5vh;
+    overflow: hidden;
+}
+
+.rc-scroll {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow: hidden;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 0;
+}
+
+.rc-detail-scroll {
+    min-height: 14vh;
+    max-height: 20vh;
+    overflow-y: auto;
+    margin-top: 0.5rem;
+    padding: 0 1rem;
+}
+
+.rcd-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rcd-host p {
+    color: var(--color-light-more);
+}
+
+.rcd-info h3 {
+    color: var(--color-light-more);
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.room-topic {
+    margin-top: 0.3rem;
+}
+
+.room-topic small {
+    background-color: var(--color-light);
+    color: var(--color-text-light);
+    border-radius: 1.5rem;
+    padding: 0.4rem 0.8rem;
+
+}
+
+.room-content-scroll {
+    max-height: 50vh;
+    overflow-y: auto;
+    background-color: var(--color-dark);
+    border-radius: 0.5rem;
+    margin: 0.2rem 0;
+    padding: 0.5rem 1rem;
+}
+
+.message {
+    border-left: 1px solid var(--color-light);
+    border-right: 1px solid var(--color-light);
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+}
+
+.msg-head {
+    margin-bottom: 0.5rem;
+}
+
+.msg-head small {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.msg-head small div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.msg-head small a {
+    color: var(--color-light-more);
+}
+
+.comment-container {
+    width: 97%;
+    margin: 1rem 0.8rem;
+}
+
+.comment-form input[type=text] {
+    background-color: var(--color-light);
+    color: var(--color-text-light);
+    border: 1px solid var(--color-light);
+    border-radius: 0.5rem;
+    outline: none;
+    padding: 0.5rem;
+    width: 100%;
+    font-size: 1.05rem;
+}
+
+/* Participants sidebar styling*/
+
+.participants-container {
+    max-height: 87.5vh;
+    overflow: hidden;
+}
+
+.pc-head {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.pc-head small {
+    color: var(--color-light-more);
+}
+
+.pc-body {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    padding: 1.4rem;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.participent p {
+    line-height: 1.2;
+}
+
+.participent p span {
+    display: block;
+    color: var(--color-light-more);
+}
+
+/* Delete view styling */
+
+#delete-view {
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#delete-form {
+    max-width: 30vw;
+    margin: 0 auto;
+}
+
+#d-form {
+    padding: 1.5rem 3rem;
+}
+
+#d-form p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+}
+
+#d-form span {
+    color: var(--color-light-more);
+}
+
+#df-btns {
+    display: flex;
+    justify-content: center;
+}
+
+/* Login and Register View Styling */
+
+#lr-view {
+    width: inherit;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lr-form {
+    width: 25vw;
+}
+
+#lrf-head {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+#lrf-body {
+    padding: 0.5rem 1rem;
+}
+
+.lrf-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1rem;
+}
+
+#htext {
+    text-align: center;
+    color: var(--color-light-more);
+    margin-bottom: 1rem;
+    letter-spacing: 0.03rem;
+}
+
+.lrf-input input {
+    background: transparent;
+    border: 1px solid var(--color-light);
+    border-radius: 0.5rem;
+    outline: none;
+    font-family: inherit;
+    font-size: 0.8rem;
+    color: var(--color-text-dark);
+    padding: 0.5rem 1rem;
+    margin-bottom: 1.5rem;
+}
+
+#lrf-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#lrf-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#lrf-links a {
+    color: var(--color-light-more);
+}
+
+/* User Profile styling */
+
+#user-profile {
+    width: 100%;
+}
+
+#up-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+    margin: 0.5rem;
+}
+
+#up-info p {
+    color: var(--color-light-more);
+}
+
+#edit-btn {
+    border: 1px solid var(--color-light-more);
+    color: var(--color-light-more);
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+}
+
+#up-about h3 {
+    color: var(--color-light);
+    margin-top: 1rem;
+}
+
+.roomlist h3 {
+    color: var(--color-light);
+    margin-top: 1rem;
+}
+
+/* TopicsView Styling */
+
+#topics_view{
+    max-width: 40rem;
+    margin: auto;
+}
+.tv-body{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem 2rem;
+}
+.tv-body .search-bar form{
+    align-self: center;
+    max-width: 100%;
+    margin-bottom: 0.5rem;
+}
+.topic{
+    padding: 0.5rem 0.5rem 0.5rem 0;
+    border-bottom: 1px solid var(--color-light);
+}
+.topic a{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.02rem;
+    transition: 300ms ease-in-out;
+}
+.topic a:hover{
+    color: var(--color-light-more);
+}

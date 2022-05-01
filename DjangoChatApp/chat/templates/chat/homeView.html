@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block importCSS %}
+<link rel="stylesheet" href="{% static 'homeView.css' %}">
+{% endblock importCSS %}
+
+{% block content %}
+
+<div id="home-container">
+
+    <div id="topics-sidebar" class="container-item">
+        {% include 'chat/topics_component.html' %}
+    </div>
+
+    <div id="feed-area" class="container-item">
+        <div class="feed-item feed-head">
+            <div id="fh-title">
+                <h3>STUDY ROOMS</h3>
+                <p>{{rooms.all|length}} Rooms available</p>
+            </div>
+
+            <a href="{% url 'chat:createView' %}">
+                <div class="createbtn">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                        <title>add</title>
+                        <path
+                            d="M16.943 0.943h-1.885v14.115h-14.115v1.885h14.115v14.115h1.885v-14.115h14.115v-1.885h-14.115v-14.115z">
+                        </path>
+                    </svg>
+                    Create Room
+                </div>
+            </a>
+        </div>
+
+        <div class="feed-item roomlist">
+            {% include 'chat/room-list_component.html' %}
+        </div>
+
+    </div>
+
+    <div class="container-item window">
+        {% include 'chat/activity_component.html' %}
+    </div>
+
+</div>
+
+{% endblock content %}

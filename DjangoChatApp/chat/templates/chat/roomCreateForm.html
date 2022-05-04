@@ -18,11 +18,11 @@
                 <h3>{{f_title}}</h3>
             </div>
         </div>
-        <div class="crf-body">
+        <div id="form-body">
             <form action="" method="post">
                 {% csrf_token %}
 
-                <div class="crf-input">
+                <div class="form-input">
                     <label for="id_topic">Topic</label>
                     <input type="text" name="topic" value="{{room.topic.name}}" list="topic-list" required>
                     <datalist id="topic-list">
@@ -34,18 +34,20 @@
                     </datalist>
                 </div>
 
-                <div class="crf-input">
+                <div class="form-input">
                     <label for="id_name">Room Name</label>
                     {{form.name}}
                 </div>
 
-                <div class="crf-input">
+                <div class="crf-input form-input">
                     <label for="id_description">Description</label>
                     {{form.description}}
                 </div>
-                <div id="crf-btn">
+                
+                <div class="crf-btn">
                     <input class="btn" type="submit" value="Done">
                 </div>
+                
             </form>
         </div>
     </div>

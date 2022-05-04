@@ -17,5 +17,7 @@ urlpatterns = [
     path('delete-message/<int:pk>/', deleteMessage, name='deleteMsg'),
 
     path('profile/<str:uname>/', userProfileView, name='userProfileView'),
+    path('profile/edit', editUserProfile, name='editUserProfile'),
+    
     path('topics/', topicsView, name='topicsView'),
 ]

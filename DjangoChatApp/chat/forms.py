@@ -1,6 +1,5 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
 from . models import RoomModel
 
 class RoomCreateForm(forms.ModelForm):
@@ -31,7 +30,7 @@ class RoomCreateForm(forms.ModelForm):
             'participants'
         ]
 
-class UserForm(UserCreationForm):
+class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = [
@@ -40,4 +39,3 @@ class UserForm(UserCreationForm):
             'last_name',
             'email',
         ]
-

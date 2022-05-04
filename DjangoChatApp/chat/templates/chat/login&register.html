@@ -13,29 +13,31 @@
         </div>
 
         <div id="lrf-body">
-            <form action="" method="POST">
-                {% csrf_token %}
-                <div class="lrf-input">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" id="username" placeholder="Enter username">
-                </div>
-
-                <div class="lrf-input">
-                    <label for="Password">Password</label>
-                    <input type="password" name="password" id="password" placeholder="Enter Password">
-                </div>
-
-                <div id="lrf-options">
-
-                    <div id="lrf-btn">
-                        <input class="btn" type="submit" value="Login">
+            <div class="scroll">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="-input">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" id="username" placeholder="Enter username">
                     </div>
-                    <div id="lrf-links">
-                        <p>Haven't signed up yet?</p>
-                        <a href="{% url 'chat:registerUser' %}">Sign Up</a>
+
+                    <div class="-input">
+                        <label for="Password">Password</label>
+                        <input type="password" name="password" id="password" placeholder="Enter Password">
                     </div>
-                </div>
-            </form>
+
+                    <div id="lrf-options">
+
+                        <div id="lrf-btn">
+                            <input class="btn" type="submit" value="Login">
+                        </div>
+                        <div id="lrf-links">
+                            <p>Haven't signed up yet?</p>
+                            <a href="{% url 'chat:registerUser' %}">Sign Up</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -47,40 +49,32 @@
             <h3>Register</h3>
         </div>
 
-        <div id="lrf-body">
+        <div id="form-body">
             <p id="htext">
                 Start chatting with awesome peoples, Register Now!!
             </p>
-            <form action="" method="POST">
-                {% csrf_token %}
-                <div class="lrf-input">
-                    <p>Full Name</p>
-                    {{form.username}}
-                </div>
-                <div class="lrf-input">
-                    <p>Username</p>
-                    {{form.username}}
-                </div>
-
-                <div class="lrf-input">
-                    <p>Password</p>
-                    {{form.password1}}
-                </div>
-                <div class="lrf-input">
-                    <p>Confirm Password</p>
-                    {{form.password2}}
-                </div>
-
-                <div id="lrf-options">
-                    <div id="lrf-btn">
-                        <input class="btn" type="submit" value="Sign Up">
+            <div class="scroll">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="form-input">
+                        <label for="id_{{field.label}}">{{field.label}}</label>
+                        {{field}}
+                        <span>{{field.help_text}}</span>
                     </div>
-                    <div id="lrf-links">
-                        <p>Already signed up?</p>
-                        <a href="{% url 'chat:loginUser' %}">Login</a>
+                    {% endfor %}
+
+                    <div id="lrf-options">
+                        <div id="lrf-btn">
+                            <input class="btn" type="submit" value="Sign Up">
+                        </div>
+                        <div id="lrf-links">
+                            <p>Already signed up?</p>
+                            <a href="{% url 'chat:loginUser' %}">Login</a>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
 
     </div>

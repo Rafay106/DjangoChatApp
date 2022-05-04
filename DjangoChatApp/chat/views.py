@@ -1,10 +1,10 @@
-from unicodedata import name
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
 from . models import *
@@ -27,7 +27,7 @@ def loginUser(request):
             messages.error(request, 'User does not exist!')
 
         user = authenticate(request, username=username, password=password)
-        print(type(user))
+        
         if user is not None:
             login(request, user)
             return redirect('chat:homeView')
@@ -44,9 +44,9 @@ def logoutUser(request):
     return redirect('chat:loginUser')
 
 def registerUser(request):
-    form = UserForm()
+    form = UserCreationForm()
     if request.method == 'POST':
-        form = UserForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
             user.username = user.username.lower()
@@ -69,7 +69,7 @@ def homeView(request):
         Q(host__username__icontains=q) |
         Q(description__icontains=q)
     )
-    topics = TopicModel.objects.all()
+    topics = TopicModel.objects.all()[0:5]
     msgs = MessageModel.objects.filter(Q(room__topic__name__icontains=q ))
 
     context = {
@@ -106,7 +106,7 @@ def roomView(request, pk):
 def userProfileView(request, uname):
     user = User.objects.get(username=uname)
     rooms = user.roommodel_set.all()
-    topics = TopicModel.objects.all()
+    topics = TopicModel.objects.all()[0:5]
     msgs = user.messagemodel_set.all()
     context = {
         'user' : user,
@@ -200,9 +200,18 @@ def deleteMessage(request, pk):
 
 @login_required(login_url='chat:loginUser')
 def editUserProfile(request):
+    user = request.user
+    form = UserForm(instance=user)
+    if request.method == 'POST':
+        form = UserForm(request.POST, instance = user)
+        if form.is_valid():
+            form.save()
+            return redirect('chat:userProfileView', uname = user.username)
 
-    context = {}
-    return render(request, 'chat/editUserProfile', context)
+    context = {
+        'form' : form
+    }
+    return render(request, 'chat/edit-user.html', context)
 
 
 def topicsView(request):

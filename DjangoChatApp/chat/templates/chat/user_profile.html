@@ -12,16 +12,18 @@
             <div id="up-info">
 
                 <div class="avatar avatar-vlg">
-                    <img src="https://unsplash.it/3840/2160">
+                    <img src="https://randomuser.me/api/portraits/men/3.jpg">
                 </div>
 
-                <h3>User Full Name</h3>
+                <h3 style="text-transform:capitalize">{{user}}</h3>
                 <p>@{{user}}</p>
-                <a href="">
+                {% if user == request.user %}
+                <a href="{% url 'chat:editUserProfile' %}">
                     <div id="edit-btn">
                         Edit Profile
                     </div>
                 </a>
+                {% endif %}
             </div>
             <div id="up-about">
                 <h3>About</h3>

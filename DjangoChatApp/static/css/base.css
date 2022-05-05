@@ -3,6 +3,7 @@
     --color-medium: #383E49;
     --color-light: #535B69;
     --color-light-more: #ADB7FF;
+    --color-important: #FFB1AD;
 
     --color-text-light: #e5e5e5;
     --color-text-dark: #adb5bd;
@@ -22,7 +23,6 @@ body {
     color: var(--color-text-dark);
     font-family: 'Roboto';
     line-height: 1.6;
-
 }
 
 .container {
@@ -77,6 +77,7 @@ svg {
     font-size: 1rem;
     font-weight: 500;
     padding: 0.5rem 1rem;
+    margin-top: 1rem;
     cursor: pointer;
 }
 
@@ -95,7 +96,7 @@ svg {
     flex-direction: column;
     gap: 0.5rem;
     font-size: 1rem;
-    padding: 0.5rem;
+    padding: 0 0.5rem;
 }
 
 .form-input input {
@@ -115,7 +116,7 @@ svg {
 
 .form-input span,
 .form-input span li{
-    color: var(--color-light-more);
+    color: var(--color-important);
     font-size: 0.8rem;
     list-style: none;
     cursor: default;
@@ -247,16 +248,24 @@ svg {
     color: var(--color-text-light);
 }
 
+.logo #s-logo{
+    display: none;
+}
+
 .logo img {
     height: 2rem;
 }
 
 /* Navbar styling - Search Bar */
 
+.search-bar{
+    max-width: 30rem;
+}
+
 .search-bar form {
     display: flex;
     gap: 0.5rem;
-    max-width: 30rem;
+    width: 100%;
     background-color: var(--color-light);
     color: var(--color-text-light);
     border-radius: 0.5rem;
@@ -268,7 +277,7 @@ svg {
 }
 
 .search-bar input {
-    width: 30rem;
+    width: 100%;
     background-color: var(--color-light);
     color: var(--color-text-light);
     border: none;
@@ -277,6 +286,61 @@ svg {
     padding: 0.5rem;
     font-size: 1rem;
     letter-spacing: 0.06em;
+}
+
+.mobile-nav{
+    display: none;
+}
+
+@media only screen and (max-width:1300px) {
+    .container{
+        max-width: 95%;
+    }
+    .logo #l-logo{
+        display: none;
+    }
+    .logo #s-logo{
+        display: block;
+    }
+    .logo{
+        justify-self: center;
+    }
+    #activity-sidebar{
+        display: none;
+    }
+    #home-container{
+        grid-template-columns: 1fr 3fr;
+    }
+    .nav-container .search-bar{
+        justify-self: stretch;
+    }
+}
+
+@media only screen and (max-width:900px){
+    #topics-sidebar{
+        display: none;
+    }
+    #home-container{
+        grid-template-columns: 1fr;
+    }
+    .nav-container .search-bar{
+        display: none;
+    }
+    .nav-container{
+        display: flex;
+        justify-content: space-between;
+    }
+    .mobile-nav{
+        display: block;
+    }
+    .mobile-nav .container{
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        justify-content: center;
+    }
+    .search-bar{
+        width: 100%;
+    }
 }
 
 /* Navbar styling - Profile */
@@ -789,7 +853,6 @@ svg {
 }
 
 #lrf-head {
-    margin-bottom: 1rem;
     display: flex;
     justify-content: center;
 }

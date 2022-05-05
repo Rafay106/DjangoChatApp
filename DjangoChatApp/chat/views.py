@@ -93,13 +93,10 @@ def roomView(request, pk):
         room.participants.add(request.user)
         return redirect('chat:roomView', pk=room.id)
 
-    list1 = ['user']*20
-
     context = {
         "room" : room,
         "msgs" : msgs,
-        "participants" : participants_list,
-        "list" : list1
+        "participants" : participants_list
     }
     return render(request, 'chat/roomView.html', context)
 

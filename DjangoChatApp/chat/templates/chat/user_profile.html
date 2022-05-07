@@ -27,19 +27,23 @@
             </div>
             <div id="up-about">
                 <h3>About</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur dolores corrupti culpa veniam
-                    fugiat, repudiandae quia placeat quaerat quis alias adipisci, aliquam architecto debitis natus
-                    voluptatem quidem ea eius facilis?</p>
+                <p>{{user.about}}</p>
             </div>
         </div>
         <div class="feed-item roomlist">
+            {% if user in rooms %}
             <h3>Room Hosted by @{{user}}</h3>
             {% include 'chat/room-list_component.html' %}
+            {% else %}
+            <h3>@{{user.username}} has not hosted any rooms yet.</h3>
+            {% endif %}
         </div>
     </div>
 
     <div id="activity-sidebar" class="window">
+        {% if user in msgs %}
         {% include 'chat/activity_component.html' %}
+        {% endif %}
     </div>
 </div>
 

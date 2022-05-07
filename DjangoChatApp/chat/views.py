@@ -148,7 +148,7 @@ def updateView(request, pk):
         topic_name = request.POST.get('topic')
         topic, created = TopicModel.objects.get_or_create(name = topic_name)
         
-        room.name   = request.POST.get('name'),
+        room.name   = request.POST.get('name')
         room.topic  = topic
         room.description = request.POST.get('description')
         room.save()

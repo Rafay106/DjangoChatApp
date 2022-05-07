@@ -20,4 +20,5 @@ urlpatterns = [
     path('profile/edit', editUserProfile, name='editUserProfile'),
     
     path('topics/', topicsView, name='topicsView'),
+    path('recent-activities/', activityView, name='activityView'),
 ]

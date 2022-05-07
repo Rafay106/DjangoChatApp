@@ -20,8 +20,8 @@
             </div>
         </nav>
 
-        <div class="mobile-nav">
-            <div class="container">
+        <div class="container">
+            <div class="mobile-nav">
                 <div class="search-bar">
                     <form action="{% url 'chat:homeView' %}">
                         <label for="search">
@@ -37,12 +37,12 @@
                     </form>
                 </div>
                 <div class="options">
-                    <a href="/create-room/">
+                    <a href="{% url 'chat:topicsView' %}">
                         <div class="createbtn">
                             Browse Topics
                         </div>
                     </a>
-                    <a href="/create-room/">
+                    <a href="{% url 'chat:activityView' %}">
                         <div class="createbtn">
                             Recent Activities
                         </div>
@@ -71,6 +71,11 @@
         </div>
     </main>
 
+    <footer>
+        <div class="container">
+            Django Chat App project &copy 2022
+        </div>
+    </footer>
     <script src="{% static 'script/base.js' %}"></script>
 
 </body>

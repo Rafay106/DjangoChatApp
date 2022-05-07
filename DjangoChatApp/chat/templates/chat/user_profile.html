@@ -12,11 +12,11 @@
             <div id="up-info">
 
                 <div class="avatar avatar-vlg">
-                    <img src="https://randomuser.me/api/portraits/men/3.jpg">
+                    <img src="{{user.avatar.url}}">
                 </div>
 
-                <h3 style="text-transform:capitalize">{{user}}</h3>
-                <p>@{{user}}</p>
+                <h3 style="text-transform:capitalize">{{user.name}}</h3>
+                <p>@{{user.username}}</p>
                 {% if user == request.user %}
                 <a href="{% url 'chat:editUserProfile' %}">
                     <div id="edit-btn">

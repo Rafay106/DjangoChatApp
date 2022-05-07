@@ -6,9 +6,9 @@
             <div class="profile-sm">
                 <a href="{% url 'chat:userProfileView' room.host.username %}">
                     <div class="avatar avatar-small">
-                        <img src="https://randomuser.me/api/portraits/men/37.jpg" />
+                        <img src="{{room.host.avatar.url}}" />
                     </div>
-                    @{{room.host.username}}
+                    Host: @{{room.host.username}}
                 </a>
             </div>
         </div>

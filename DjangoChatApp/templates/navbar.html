@@ -31,9 +31,9 @@
       <div class="profile-lg">
         <a href="{% url 'chat:userProfileView' request.user.username %}">
           <div class="avatar avatar-medium">
-            <img src="https://randomuser.me/api/portraits/men/3.jpg" />
+            <img src="{{request.user.avatar.url}}" />
           </div>
-          <p>{{request.user}} <small>@{{request.user}}</small></p>
+          <p>{{request.user.name}} <small>@{{request.user.username}}</small></p>
         </a>
       </div>
       <button class="dropdown-button">

@@ -21,8 +21,8 @@
             </div>
         </div>
 
-        <div id="lrf-body">
-            <form action="" method="POST">
+        <div id="lrf-body" class="scroll">
+            <form action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in form %}
                 <div class="form-input">

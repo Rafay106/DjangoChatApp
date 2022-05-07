@@ -12,10 +12,10 @@
                     <div class="profile-sm">
                         <a href="{% url 'chat:userProfileView' msg.user.username %}">
                             <div class="avatar avatar-small">
-                                <img src="https://randomuser.me/api/portraits/men/37.jpg" />
+                                <img src="{{msg.user.avatar.url}}" />
                             </div>
                             <p>
-                                @{{msg.user}}
+                                @{{msg.user.username}}
                                 <small>{{msg.created|timesince}} ago</small>
                             </p>
                         </a>

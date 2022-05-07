@@ -69,9 +69,14 @@
 
                 <div class="rcd-host">
                     <small>HOSTED BY</small>
-                    <a href="{% url 'chat:userProfileView' room.host.username %}">
-                        <p>@{{room.host}}</p>
-                    </a>
+                    <div class="profile-sm">
+                        <a href="{% url 'chat:userProfileView' room.host.username %}">
+                            <div class="avatar avatar-small">
+                                <img src="{{room.host.avatar.url}}" />
+                            </div>
+                            @{{room.host.username}}
+                        </a>
+                    </div>
                 </div>
 
                 <div class="rcd-body">
@@ -93,7 +98,7 @@
                                 <div class="profile-sm">
                                     <a href="{% url 'chat:userProfileView' room.host.username %}">
                                         <div class="avatar avatar-small">
-                                            <img src="https://randomuser.me/api/portraits/men/37.jpg" />
+                                            <img src="{{msg.user.avatar.url}}" />
                                         </div>
                                         @{{room.host.username}}
                                     </a>
@@ -152,9 +157,9 @@
                     <div class="profile-lg">
                         <a href="{% url 'chat:userProfileView' p.username %}">
                             <div class="avatar avatar-medium">
-                                <img src="https://randomuser.me/api/portraits/men/37.jpg" />
+                                <img src="{{p.avatar.url}}" />
                             </div>
-                            <p>{{p.username}} <span>@{{p.username}}</span></p>
+                            <p>{{p.name}} <span>@{{p.username}}</span></p>
                         </a>
                     </div>
                 </div>

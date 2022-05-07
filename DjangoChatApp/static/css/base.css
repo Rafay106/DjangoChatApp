@@ -42,7 +42,12 @@ a {
     align-items: start;
     gap: 6rem;
 }
-
+footer{
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: var(--color-medium);
+    text-align: center;
+}
 /* svg styling */
 
 svg {
@@ -92,14 +97,14 @@ svg {
 }
 
 .form-input {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    margin: 1.5rem 0;
     font-size: 1rem;
     padding: 0 0.5rem;
 }
 
 .form-input input {
+    display: block;
+    width: 100%;
     background: transparent;
     border: 1px solid var(--color-light);
     border-radius: 0.5rem;
@@ -114,12 +119,30 @@ svg {
     margin-top: 1.5rem;
 }
 
+.form-input a{
+    color: var(--color-light-more);
+}
+
 .form-input span,
 .form-input span li{
     color: var(--color-important);
     font-size: 0.8rem;
     list-style: none;
     cursor: default;
+}
+
+textarea {
+    background: transparent;
+    color: var(--color-light-more);
+    border: 1px solid var(--color-light);
+    border-radius: 0.5rem;
+    outline: none;
+    padding: 0.5rem;
+    width: 100%;
+    height: 7rem;
+    resize: none;
+    font-size: large;
+    font-family: 'Roboto';
 }
 
 /* Title-bar styling */
@@ -156,9 +179,12 @@ svg {
     background-color: var(--color-medium);
     border-radius: 0.5rem;
 }
-
+main{
+    overflow: hidden;
+    height: 80.7vh;
+}
 .scroll {
-    max-height: 82.5vh;
+    max-height: 70vh;
     overflow-y: auto;
 }
 
@@ -292,57 +318,6 @@ svg {
     display: none;
 }
 
-@media only screen and (max-width:1300px) {
-    .container{
-        max-width: 95%;
-    }
-    .logo #l-logo{
-        display: none;
-    }
-    .logo #s-logo{
-        display: block;
-    }
-    .logo{
-        justify-self: center;
-    }
-    #activity-sidebar{
-        display: none;
-    }
-    #home-container{
-        grid-template-columns: 1fr 3fr;
-    }
-    .nav-container .search-bar{
-        justify-self: stretch;
-    }
-}
-
-@media only screen and (max-width:900px){
-    #topics-sidebar{
-        display: none;
-    }
-    #home-container{
-        grid-template-columns: 1fr;
-    }
-    .nav-container .search-bar{
-        display: none;
-    }
-    .nav-container{
-        display: flex;
-        justify-content: space-between;
-    }
-    .mobile-nav{
-        display: block;
-    }
-    .mobile-nav .container{
-        display: grid;
-        grid-template-rows: 1fr 1fr;
-        justify-content: center;
-    }
-    .search-bar{
-        width: 100%;
-    }
-}
-
 /* Navbar styling - Profile */
 
 .nav-menu {
@@ -439,7 +414,6 @@ svg {
     font-weight: bolder;
 }
 
-
 .btn-link {
     display: flex;
     align-items: center;
@@ -455,9 +429,6 @@ svg {
 }
 
 /* feed head styling */
-#feed-area {
-    padding: 10px;
-}
 
 .feed-head {
     display: flex;
@@ -684,8 +655,7 @@ svg {
 }
 
 .rc-detail-scroll {
-    min-height: 14vh;
-    max-height: 20vh;
+    height: 26vh;
     overflow-y: auto;
     margin-top: 0.5rem;
     padding: 0 1rem;
@@ -841,6 +811,10 @@ svg {
 
 /* Login and Register View Styling */
 
+#lrf-body{
+    padding: 0 0.5rem 1.5rem 0.5rem;
+}
+
 #lr-view {
     width: inherit;
     display: flex;
@@ -923,6 +897,9 @@ svg {
     max-width: 40rem;
     margin: auto;
 }
+.tv-scroll{
+    /* overflow: hidden; */
+}
 .tv-body{
     display: flex;
     flex-direction: column;
@@ -948,4 +925,71 @@ svg {
 }
 .topic a:hover{
     color: var(--color-light-more);
+}
+
+/*------------------
+ Mobile View Styling 
+--------------------*/
+
+/* Base.html */
+
+.mobile-nav .options{
+    display: flex;
+    justify-content: space-around;
+}
+.mobile-nav{
+    max-width: 30rem;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+}
+.search-bar{
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+
+@media only screen and (max-width:1300px) {
+    .container{
+        max-width: 95%;
+    }
+    .logo #l-logo{
+        display: none;
+    }
+    .logo #s-logo{
+        display: block;
+    }
+    .logo{
+        justify-self: center;
+    }
+    #activity-sidebar{
+        display: none;
+    }
+    #home-container{
+        grid-template-columns: 1fr 3fr;
+    }
+}
+
+@media only screen and (max-width:900px){
+    #topics-sidebar{
+        display: none;
+    }
+    #home-container{
+        grid-template-columns: 1fr;
+    }
+    .nav-container .search-bar{
+        display: none;
+    }
+    .nav-container{
+        display: flex;
+        justify-content: space-between;
+    }
+    .mobile-nav{
+        display: block;
+    }
+    main{
+        height: 66.68vh;
+    }
+    .scroll{
+        max-height: 60vh;
+    }
+    
 }

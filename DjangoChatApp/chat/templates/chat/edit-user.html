@@ -27,11 +27,18 @@
                 {% for field in form %}
                 <div class="form-input">
                     <label for="id_{{field.label}}">{{field.label}}</label>
+                    {% if field.name == 'avatar' %}
+                    <img width="100" id="current-avatar" src="{{request.user.avatar.url}}"/>
+                    <p id="new-val"></p>
+                    <a id='change-avatar'>Change</a>
+                    <description style="display:none;">Can be added some button style to the Change button :) (cursor:pointer;)</description>
                     {{field}}
+                    {% else %}
+                    {{field}}
+                    {% endif %}
                 </div>
                 {% endfor %}
                 <div id="lrf-options">
-
                     <div id="lrf-btn">
                         <input class="btn" type="submit" value="Update">
                     </div>
@@ -39,6 +46,20 @@
             </form>
         </div>
     </div>
-
 </div>
 {% endblock content %}
+{% block script %}
+<script>
+    // change avatar is clicked
+    $("#change-avatar").click(function(){
+        $("#id_avatar").click();
+    });
+    // file input is changed
+    $("#id_avatar").change(function(){
+        // get the file name
+        $("#new-val").text($("#id_avatar").val());
+        // hide the previous image
+        $("#current-avatar").hide();
+    });
+</script>
+{% endblock script %}

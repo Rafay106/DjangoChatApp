@@ -31,6 +31,8 @@ class RoomCreateForm(forms.ModelForm):
         ]
 
 class UserForm(forms.ModelForm):
+    avatar = forms.ImageField()
+    avatar.widget = avatar.widget= forms.FileInput(attrs={'style': 'display: none;'})
     class Meta:
         model = UserModel
         fields = [

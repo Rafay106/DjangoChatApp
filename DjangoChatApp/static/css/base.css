@@ -116,7 +116,8 @@ svg {
 }
 
 .form-input label{
-    margin-top: 1.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
 }
 
 .form-input a{
@@ -888,6 +889,19 @@ main{
 .roomlist h3 {
     color: var(--color-light);
     margin-top: 1rem;
+}
+
+/* Edit user profile styling */
+
+.avatar-input{
+    display: flex;
+    justify-content: center;
+}
+.avatar-input img{
+    width: 5rem;
+    height: 5rem;
+    border: 2px solid var(--color-light-more);
+    border-radius: 50%;
 }
 
 /* TopicsView Styling */

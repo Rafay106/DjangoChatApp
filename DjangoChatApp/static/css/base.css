@@ -181,7 +181,7 @@ textarea {
 }
 main{
     overflow: hidden;
-    height: 80.7vh;
+    height: 81.3vh;
 }
 .scroll {
     max-height: 70vh;
@@ -247,7 +247,6 @@ main{
     padding: 0.7rem 0;
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
-    justify-content: center;
     align-items: center;
 }
 
@@ -655,7 +654,7 @@ main{
 }
 
 .rc-detail-scroll {
-    height: 26vh;
+    max-height: 30vh;
     overflow-y: auto;
     margin-top: 0.5rem;
     padding: 0 1rem;
@@ -942,10 +941,6 @@ main{
     margin: 0 auto;
     margin-bottom: 1rem;
 }
-.search-bar{
-    max-width: 100%;
-    margin-bottom: 1rem;
-}
 
 @media only screen and (max-width:1300px) {
     .container{
@@ -991,5 +986,8 @@ main{
     .scroll{
         max-height: 60vh;
     }
-    
+    .search-bar{
+        max-width: 100%;
+        margin-bottom: 1rem;
+    }
 }

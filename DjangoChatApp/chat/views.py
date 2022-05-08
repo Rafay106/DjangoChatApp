@@ -145,14 +145,12 @@ def updateView(request, pk):
         return HttpResponse('Oops! Action not allowed.')
 
     if request.method == 'POST':
-        topic_name = request.POST.get('topic')
-        topic, created = TopicModel.objects.get_or_create(name = topic_name)
-        
-        room.name   = request.POST.get('name')
-        room.topic  = topic
+        topic_name       = request.POST.get('topic')
+        topic, created   = TopicModel.objects.get_or_create(name = topic_name)
+        room.name        = request.POST.get('name')
+        room.topic       = topic
         room.description = request.POST.get('description')
         room.save()
-        
         return redirect('chat:roomView', pk=room.id)
 
     f_title = "Edit Room"

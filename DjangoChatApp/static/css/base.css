@@ -922,9 +922,12 @@ main{
     max-width: 40rem;
     margin: auto;
 }
+
+/*
 .tv-scroll{
-    /* overflow: hidden; */
+    overflow: hidden;
 }
+*/
 .tv-body{
     display: flex;
     flex-direction: column;

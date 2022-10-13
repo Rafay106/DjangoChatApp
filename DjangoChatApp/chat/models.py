@@ -1,16 +1,50 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import (AbstractUser, BaseUserManager)
 
 # Create your models here.
 
+class UserManager(BaseUserManager):
+    def create_user(self, email, password=None):
+        if not email:
+            raise ValueError("Users must have an email address")
+
+        user = self.model(
+            email=self.normalize_email(email),
+        )
+        user.is_active = True
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_staffuser(self, email, password):
+        user = self.create_user(email, password=password)
+
+        user.is_staff = True
+        user.save(using=self._db)
+        return user
+    
+    def create_superuser(self, email, username, password):
+        user = self.create_user(email, password=password)
+        
+        user.username = username
+        user.is_staff = True
+        user.is_superuser = True
+        user.save(using=self._db)
+        return user
+
+
 class UserModel(AbstractUser):
+    first_name = None
+    last_name = None
+    email = models.EmailField(verbose_name='Email Address', max_length=255, unique = True)
     name = models.CharField(max_length = 90)
-    email = models.EmailField(unique = True)
     about = models.TextField(blank = True, null = True)
     avatar = models.ImageField(null=True, default="avatar.svg")
 
+    objects = UserManager()
+
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['username']
 
 class TopicModel(models.Model):
     name = models.CharField(max_length = 100)

@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 from . models import *
-from . forms import RoomCreateForm, UserForm
+from . forms import RoomCreateForm, UserForm, MyUserCreationForm
 
 # Create your views here.
 
@@ -42,9 +42,9 @@ def logoutUser(request):
     return redirect('chat:loginUser')
 
 def registerUser(request):
-    form = UserForm()
+    form = MyUserCreationForm()
     if request.method == 'POST':
-        form = UserForm(request.POST)
+        form = MyUserCreationForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save(commit=False)
             user.username = user.username.lower()

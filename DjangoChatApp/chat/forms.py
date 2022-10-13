@@ -30,17 +30,24 @@ class RoomCreateForm(forms.ModelForm):
             'participants'
         ]
 
-class UserForm(forms.ModelForm):
+class MyUserCreationForm(UserCreationForm):
     avatar = forms.ImageField(
-        label  = 'Change',
-        widget = forms.FileInput()
+        label  = 'Upload',
+        widget = forms.FileInput(),
+        required=False
     )
     class Meta:
         model = UserModel
-        fields = [
-            'avatar',
-            'name',
-            'username',
-            'email',
-            'about'
-        ]
+        # fields = '__all__'
+        fields = ['avatar', 'name', 'username', 'email', 'password1', 'password2', 'about']
+        
+class UserForm(forms.ModelForm):
+    avatar = forms.ImageField(
+        label  = 'Change',
+        widget = forms.FileInput(),
+        required=False
+    )
+    class Meta:
+        model = UserModel
+        # fields = '__all__'
+        fields = ['avatar', 'name', 'username', 'about']

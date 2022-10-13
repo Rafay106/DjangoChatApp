@@ -9,6 +9,8 @@
 
 ### Database used - Oracle
 
+## URLs / Templates
+
 ### Homepage / Landingpage (localhost:{portnumber})
 ![localhost.png](ScreenShots/localhost.png)
 

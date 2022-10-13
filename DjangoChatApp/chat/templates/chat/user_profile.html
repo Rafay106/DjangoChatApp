@@ -32,7 +32,7 @@
         </div>
         <div class="feed-item roomlist">
             {% if rooms %}
-            <h3>Room Hosted by @{{user.username}}</h3>
+            <h3>Room(s) Hosted by @{{user.username}}</h3>
             {% include 'chat/room-list_component.html' %}
             {% else %}
             <h3>@{{user.username}} has not hosted any rooms yet.</h3>

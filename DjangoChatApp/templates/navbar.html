@@ -1,5 +1,5 @@
 {% load static %}
-<div class="nav-container">
+<nav class="nav-container">
 
   <div class="logo">
     <a href="{% url 'chat:homeView' %}">
@@ -72,7 +72,7 @@
     {% else %}
 
     <a id="logout-options" href="{% url 'chat:loginUser'%}">
-      <img src="{% static 'assets/avatar.svg' %}" alt="">
+      <img src="{% static 'images/avatar.svg' %}" alt="">
       Login
     </a>
 
@@ -80,4 +80,4 @@
 
   </div>
 
-</div>
+</nav>

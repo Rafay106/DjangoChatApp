@@ -67,3 +67,36 @@ if (photoInput)
 // Scroll to Bottom
 const conversationThread = document.querySelector(".room-container");
 if (conversationThread) conversationThread.scrollTop = conversationThread.scrollHeight;
+
+//Websocket
+const ws_url = `ws://localhost:8000/ws/ac/`;
+const ws = new WebSocket(ws_url);
+ws.onopen = () => {
+    console.log('Websocket connection open...');
+}
+ws.onmessage = event => {
+    let data = JSON.parse(event.data)
+    document.querySelector('.messages #ws_data').innerHTML = `<li>${event.data}</li>`;
+
+    if (data.type === 'chat') {
+        let roomContentScroll = document.getElementById('room-content-scroll');
+        roomContentScroll.innerHTML += `
+            <div class="message">
+                <div class="msg-head">Message from server: </div>
+                <div class="msg-body">
+                    <p>${data.message}</p>
+                </div>  
+            </div>`;
+    }
+}
+
+// Send Message Form
+const sendMsgForm = document.getElementById('send-msg-form');
+sendMsgForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const message = e.target.msgbody.value;
+    ws.send(JSON.stringify({
+        'message': message
+    }))
+    sendMsgForm.reset();
+});

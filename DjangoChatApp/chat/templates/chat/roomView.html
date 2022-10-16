@@ -1,10 +1,5 @@
 {% extends "base.html" %}
 
-{% block importCSS %}
-{% load static %}
-<link rel="stylesheet" href="{% static 'roomView.css' %}">
-{% endblock importCSS%}
-
 {% block content %}
 
 <div class="roomview-container">
@@ -89,7 +84,7 @@
 
             </div>
             {% if msgs %}
-            <div class="room-content-scroll">
+            <div class="room-content-scroll" id="room-content-scroll">
                 {% for msg in msgs %}
                 <div class="message">
                     <div class="msg-head">
@@ -127,17 +122,17 @@
             </div>
             {% endif %}
 
-        </div>
-
-        <div class="comment-container">
-            {% if request.user.is_authenticated %}
-            <div class="comment-form">
-                <form action="" method="post">
-                    {% csrf_token %}
-                    <input type="text" name="msgbody" id="msg" placeholder="Write your message here...">
-                </form>
+            <div class="comment-container">
+                {% if request.user.is_authenticated %}
+                <div class="comment-form">
+                    <form id="send-msg-form" action="" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="msgbody" id="msg" placeholder="Write your message here...">
+                    </form>
+                </div>
+                {% endif %}
             </div>
-            {% endif %}
+
         </div>
 
     </div>

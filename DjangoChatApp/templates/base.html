@@ -1,82 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Django Chat App</title>
     {% load static %}
-    <link rel="shortcut icon" href="{% static 'assets/favicon.ico' %}" type="image/x-icon">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link
+      rel="shortcut icon"
+      href="{% static 'assets/favicon.ico' %}"
+      type="image/x-icon" />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     {% block importCSS %}{% endblock importCSS %}
-</head>
+  </head>
 
-<body>
+  <body>
     <header id="main-header">
-        <nav id="nav-bar">
-            <div class="container">
-                {% include "navbar.html" %}
-            </div>
-        </nav>
+      <div class="container">{% include "navbar.html" %}</div>
 
-        <div class="container">
-            <div class="mobile-nav">
-                <div class="search-bar">
-                    <form action="{% url 'chat:homeView' %}">
-                        <label for="search">
-                            <svg class="svg-lm" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                viewBox="0 0 32 32">
-                                <title>search</title>
-                                <path
-                                    d="M32 30.586l-10.845-10.845c1.771-2.092 2.845-4.791 2.845-7.741 0-6.617-5.383-12-12-12s-12 5.383-12 12c0 6.617 5.383 12 12 12 2.949 0 5.649-1.074 7.741-2.845l10.845 10.845 1.414-1.414zM12 22c-5.514 0-10-4.486-10-10s4.486-10 10-10c5.514 0 10 4.486 10 10s-4.486 10-10 10z">
-                                </path>
-                            </svg>
-                        </label>
-                        <input type="text" name="q" id="search" placeholder="Search anything">
-                    </form>
-                </div>
-                <div class="options">
-                    <a href="{% url 'chat:topicsView' %}">
-                        <div class="createbtn">
-                            Browse Topics
-                        </div>
-                    </a>
-                    <a href="{% url 'chat:activityView' %}">
-                        <div class="createbtn">
-                            Recent Activities
-                        </div>
-                    </a>
-                </div>
-            </div>
+      <div class="container">
+        <div class="mobile-nav">
+          <div class="search-bar">
+            <form action="{% url 'chat:homeView' %}">
+              <label for="search">
+                <svg
+                  class="svg-lm"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 32 32">
+                  <title>search</title>
+                  <path
+                    d="M32 30.586l-10.845-10.845c1.771-2.092 2.845-4.791 2.845-7.741 0-6.617-5.383-12-12-12s-12 5.383-12 12c0 6.617 5.383 12 12 12 2.949 0 5.649-1.074 7.741-2.845l10.845 10.845 1.414-1.414zM12 22c-5.514 0-10-4.486-10-10s4.486-10 10-10c5.514 0 10 4.486 10 10s-4.486 10-10 10z"></path>
+                </svg>
+              </label>
+              <input
+                type="text"
+                name="q"
+                id="search"
+                placeholder="Search anything" />
+            </form>
+          </div>
+          <div class="options">
+            <a href="{% url 'chat:topicsView' %}">
+              <div class="createbtn">Browse Topics</div>
+            </a>
+            <a href="{% url 'chat:activityView' %}">
+              <div class="createbtn">Recent Activities</div>
+            </a>
+          </div>
         </div>
-
+      </div>
     </header>
 
-    <div class="messages">
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-    </div>
-
     <main>
-        <div class="container">
-            {% block content %}
-
-            {% endblock content %}
+      <div class="container">
+        <div class="messages">
+          {% if messages %}
+          <ul>
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{message.tags}}" {% endif %}>
+              {{message}}
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
         </div>
+        {% block content %} {% endblock content %}
+      </div>
     </main>
 
     <footer>
-        <div class="container">
-            Django Chat App project &copy 2022
-        </div>
+      <div class="container">Django Chat App project &copy 2022</div>
     </footer>
     <script src="{% static 'script/base.js' %}"></script>
-
-</body>
+  </body>
 </html>

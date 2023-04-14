@@ -5,7 +5,7 @@ password: admin
 
 2
 email: rafay@mail.com
-username: rafay106
+username: rafay
 password: djangochat
 
 3

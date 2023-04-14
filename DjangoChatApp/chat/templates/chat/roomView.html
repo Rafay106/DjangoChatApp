@@ -1,170 +1,183 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %} {% load static %}
+<span id="group-name" style="display: none">{{groupName}}</span>
 
 <div class="roomview-container">
-
-    <div class="room-container window">
-
-        <div class="rc-head title-bar">
-            <div class="start-options">
-                <a href="{{request.META.HTTP_REFERER}}">
-                    <svg class="svg-tl" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                        viewBox="0 0 32 32">
-                        <title>arrow-left</title>
-                        <path
-                            d="M13.723 2.286l-13.723 13.714 13.719 13.714 1.616-1.611-10.96-10.96h27.625v-2.286h-27.625l10.965-10.965-1.616-1.607z">
-                        </path>
-                    </svg>
-                </a>
-                <h3>Room</h3>
-            </div>
-            <div class="end-options">
-                {% if request.user == room.host %}
-                <a class="o" href="{% url 'chat:updateView' room.id %}">
-                    <svg class="svg-tl" id="light" enable-background="new 0 0 24 24" height="512" viewBox="0 0 24 24"
-                        width="512" xmlns="http://www.w3.org/2000/svg">
-                        <g>
-                            <path
-                                d="m23.5 22h-15c-.276 0-.5-.224-.5-.5s.224-.5.5-.5h15c.276 0 .5.224.5.5s-.224.5-.5.5z" />
-                        </g>
-                        <g>
-                            <g>
-                                <path
-                                    d="m2.5 22c-.131 0-.259-.052-.354-.146-.123-.123-.173-.3-.133-.468l1.09-4.625c.021-.09.067-.173.133-.239l14.143-14.143c.565-.566 1.554-.566 2.121 0l2.121 2.121c.283.283.439.66.439 1.061s-.156.778-.439 1.061l-14.142 14.141c-.065.066-.148.112-.239.133l-4.625 1.09c-.038.01-.077.014-.115.014zm1.544-4.873-.872 3.7 3.7-.872 14.042-14.041c.095-.095.146-.22.146-.354 0-.133-.052-.259-.146-.354l-2.121-2.121c-.19-.189-.518-.189-.707 0zm3.081 3.283h.01z" />
-                            </g>
-                            <g>
-                                <path
-                                    d="m17.889 10.146c-.128 0-.256-.049-.354-.146l-3.535-3.536c-.195-.195-.195-.512 0-.707s.512-.195.707 0l3.536 3.536c.195.195.195.512 0 .707-.098.098-.226.146-.354.146z" />
-                            </g>
-                        </g>
-                    </svg>
-                </a>
-                <a class="o" href="{% url 'chat:deleteView' room.id %}">
-                    <svg class="svg-tl" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                        viewBox="0 0 32 32">
-                        <title>delete</title>
-                        <path
-                            d="M30 4h-8v-3c0-0.553-0.447-1-1-1h-10c-0.553 0-1 0.447-1 1v3h-8v2h2v24c0 1.104 0.897 2 2 2h20c1.103 0 2-0.896 2-2v-24h2v-2h-0zM12 2h8v2h-8v-2zM26.002 30l-0.002 1v-1h-20v-24h20v24h0.002z">
-                        </path>
-                    </svg>
-                </a>
-                {% endif %}
-            </div>
-        </div>
-
-        <div class="rc-scroll">
-
-            <div class="rc-detail-scroll">
-
-                <div class="rcd-info">
-                    <h3>{{room.name}}</h3>
-                    <span>{{room.created|timesince}} ago</span>
-                </div>
-
-                <div class="rcd-host">
-                    <small>HOSTED BY</small>
-                    <div class="profile-sm">
-                        <a href="{% url 'chat:userProfileView' room.host.username %}">
-                            <div class="avatar avatar-small">
-                                <img src="{{room.host.avatar.url}}" />
-                            </div>
-                            @{{room.host.username}}
-                        </a>
-                    </div>
-                </div>
-
-                <div class="rcd-body">
-                    <p>{{room.description}}</p>
-                </div>
-
-                <div class="room-topic">
-                    <small>{{room.topic}}</small>
-                </div>
-
-            </div>
-            {% if msgs %}
-            <div class="room-content-scroll" id="room-content-scroll">
-                {% for msg in msgs %}
-                <div class="message">
-                    <div class="msg-head">
-                        <small>
-                            <div>
-                                <div class="profile-sm">
-                                    <a href="{% url 'chat:userProfileView' room.host.username %}">
-                                        <div class="avatar avatar-small">
-                                            <img src="{{msg.user.avatar.url}}" />
-                                        </div>
-                                        @{{msg.user.username}}
-                                    </a>
-                                </div>
-                                {{msg.created|timesince}} ago
-                            </div>
-
-                            {% if request.user == msg.user %}
-                            <a href="{% url 'chat:deleteMsg' msg.id %}">
-                                <svg class="svg-l" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32"
-                                    height="32" viewBox="0 0 32 32">
-                                    <title>delete</title>
-                                    <path
-                                        d="M30 4h-8v-3c0-0.553-0.447-1-1-1h-10c-0.553 0-1 0.447-1 1v3h-8v2h2v24c0 1.104 0.897 2 2 2h20c1.103 0 2-0.896 2-2v-24h2v-2h-0zM12 2h8v2h-8v-2zM26.002 30l-0.002 1v-1h-20v-24h20v24h0.002z">
-                                    </path>
-                                </svg>
-                            </a>
-                            {% endif %}
-                        </small>
-                    </div>
-                    <div class="msg-body">
-                        <p>{{msg.body}}</p>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-            {% endif %}
-
-            <div class="comment-container">
-                {% if request.user.is_authenticated %}
-                <div class="comment-form">
-                    <form id="send-msg-form" action="" method="post">
-                        {% csrf_token %}
-                        <input type="text" name="msgbody" id="msg" placeholder="Write your message here...">
-                    </form>
-                </div>
-                {% endif %}
-            </div>
-
-        </div>
-
+  <div class="room-container window">
+    <div class="rc-head title-bar">
+      <div class="start-options">
+        <a href="{{request.META.HTTP_REFERER}}">
+          <svg
+            class="svg-tl"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 32 32">
+            <title>arrow-left</title>
+            <path
+              d="M13.723 2.286l-13.723 13.714 13.719 13.714 1.616-1.611-10.96-10.96h27.625v-2.286h-27.625l10.965-10.965-1.616-1.607z"></path>
+          </svg>
+        </a>
+        <h3>Room</h3>
+      </div>
+      <div class="end-options">
+        {% if request.user == room.host %}
+        <a class="o" href="{% url 'chat:updateView' room.id %}">
+          <svg
+            class="svg-tl"
+            id="light"
+            enable-background="new 0 0 24 24"
+            height="512"
+            viewBox="0 0 24 24"
+            width="512"
+            xmlns="http://www.w3.org/2000/svg">
+            <g>
+              <path
+                d="m23.5 22h-15c-.276 0-.5-.224-.5-.5s.224-.5.5-.5h15c.276 0 .5.224.5.5s-.224.5-.5.5z" />
+            </g>
+            <g>
+              <g>
+                <path
+                  d="m2.5 22c-.131 0-.259-.052-.354-.146-.123-.123-.173-.3-.133-.468l1.09-4.625c.021-.09.067-.173.133-.239l14.143-14.143c.565-.566 1.554-.566 2.121 0l2.121 2.121c.283.283.439.66.439 1.061s-.156.778-.439 1.061l-14.142 14.141c-.065.066-.148.112-.239.133l-4.625 1.09c-.038.01-.077.014-.115.014zm1.544-4.873-.872 3.7 3.7-.872 14.042-14.041c.095-.095.146-.22.146-.354 0-.133-.052-.259-.146-.354l-2.121-2.121c-.19-.189-.518-.189-.707 0zm3.081 3.283h.01z" />
+              </g>
+              <g>
+                <path
+                  d="m17.889 10.146c-.128 0-.256-.049-.354-.146l-3.535-3.536c-.195-.195-.195-.512 0-.707s.512-.195.707 0l3.536 3.536c.195.195.195.512 0 .707-.098.098-.226.146-.354.146z" />
+              </g>
+            </g>
+          </svg>
+        </a>
+        <a class="o" href="{% url 'chat:deleteView' room.id %}">
+          <svg
+            class="svg-tl"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 32 32">
+            <title>delete</title>
+            <path
+              d="M30 4h-8v-3c0-0.553-0.447-1-1-1h-10c-0.553 0-1 0.447-1 1v3h-8v2h2v24c0 1.104 0.897 2 2 2h20c1.103 0 2-0.896 2-2v-24h2v-2h-0zM12 2h8v2h-8v-2zM26.002 30l-0.002 1v-1h-20v-24h20v24h0.002z"></path>
+          </svg>
+        </a>
+        {% endif %}
+      </div>
     </div>
 
-    <div class="participants-container window">
-
-        <div class="pc-head title-bar">
-            <h3>Participants</h3>
-            <small>({{participants|length}} Joined)</small>
+    <div class="rc-scroll">
+      <div class="rc-detail-scroll">
+        <div class="rcd-info">
+          <h3>{{room.name}}</h3>
+          <span>{{room.created|timesince}} ago</span>
         </div>
 
-        <div class="pc-scroll scroll">
+        <div class="rcd-host">
+          <small>HOSTED BY</small>
+          <div class="profile-sm">
+            <a href="{% url 'chat:userProfileView' room.host.username %}">
+              <div class="avatar avatar-small">
+                <img src="{{room.host.avatar.url}}" />
+              </div>
+              @{{room.host.username}}
+            </a>
+          </div>
+        </div>
 
-            <div class="pc-body">
-                {% for p in participants %}
-                <div class="participent">
-                    <div class="profile-lg">
-                        <a href="{% url 'chat:userProfileView' p.username %}">
-                            <div class="avatar avatar-medium">
-                                <img src="{{p.avatar.url}}" />
-                            </div>
-                            <p>{{p.name}} <span>@{{p.username}}</span></p>
-                        </a>
+        <div class="rcd-body">
+          <p>{{room.description}}</p>
+        </div>
+
+        <div class="room-topic">
+          <small>{{room.topic}}</small>
+        </div>
+      </div>
+      <div class="room-content-scroll" id="room-content-scroll">
+        <div class="message">
+          {% if msgs %} {% for msg in msgs %}
+          <div class="msg-head">
+            <small>
+              <div>
+                <div class="profile-sm">
+                  <a href="{% url 'chat:userProfileView' room.host.username %}">
+                    <div class="avatar avatar-small">
+                      <img src="{{msg.user.avatar.url}}" />
                     </div>
+                    @{{msg.user.username}}
+                  </a>
                 </div>
-                {% endfor %}
-            </div>
+                {{msg.created|timesince}} ago
+              </div>
 
+              {% if request.user == msg.user %}
+              <a href="{% url 'chat:deleteMsg' msg.id %}">
+                <svg
+                  class="svg-l"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 32 32">
+                  <title>delete</title>
+                  <path
+                    d="M30 4h-8v-3c0-0.553-0.447-1-1-1h-10c-0.553 0-1 0.447-1 1v3h-8v2h2v24c0 1.104 0.897 2 2 2h20c1.103 0 2-0.896 2-2v-24h2v-2h-0zM12 2h8v2h-8v-2zM26.002 30l-0.002 1v-1h-20v-24h20v24h0.002z"></path>
+                </svg>
+              </a>
+              {% endif %}
+            </small>
+          </div>
+          <div class="msg-body">
+            <p>{{msg.body}}</p>
+          </div>
+          {% endfor %} {% else %}
+          <div class="msg-body">
+            <p>Start conversation.</p>
+          </div>
+          {% endif %}
         </div>
+      </div>
 
+      <div class="comment-container">
+        {% if request.user.is_authenticated %}
+        <div class="comment-form">
+          <form id="send-msg-form" action="" method="post">
+            {% csrf_token %}
+            <input
+              type="text"
+              name="msgbody"
+              id="msg"
+              placeholder="Write your message here..." />
+          </form>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="participants-container window">
+    <div class="pc-head title-bar">
+      <h3>Participants</h3>
+      <small>({{participants|length}} Joined)</small>
     </div>
 
+    <div class="pc-scroll scroll">
+      <div class="pc-body">
+        {% for p in participants %}
+        <div class="participent">
+          <div class="profile-lg">
+            <a href="{% url 'chat:userProfileView' p.username %}">
+              <div class="avatar avatar-medium">
+                <img src="{{p.avatar.url}}" />
+              </div>
+              <p>{{p.name}} <span>@{{p.username}}</span></p>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
 </div>
+
+<script src="{% static 'script/websocket.js' %}"></script>
 
 {% endblock content %}
